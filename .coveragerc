@@ -1,0 +1,5 @@
+[run]
+include = toreda/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
