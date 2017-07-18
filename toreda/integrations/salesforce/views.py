@@ -26,12 +26,12 @@ class SalesforceAuthView(LoginRequiredMixin, View):
 class SalesforceCallbackView(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy('account_login')
     redirect_field_name = 'salesforce:callback'
-    template_name = 'salesforce/callback'
+    template_name = 'salesforce/callback.html'
 
     def save_credentials(self, user, token):
         SalesforceCredential.objects.create(user=user,
                                             id_url=token['id'],
-                                            issued_at=datetime.utcfromtimestamp(int(token['issued_at'])),
+                                            issued_at=datetime.fromtimestamp(int(token['issued_at']) / 1000),
                                             scope=token['scope'],
                                             instance_url=token['instance_url'],
                                             token_type=token['token_type'],

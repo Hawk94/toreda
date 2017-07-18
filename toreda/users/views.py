@@ -5,7 +5,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
 
-
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     # These next two lines tell the view to index lookups by username
